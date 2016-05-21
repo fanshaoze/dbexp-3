@@ -59,7 +59,7 @@ int main(int argc, char **argv)
 
 	/* Fill data into the block */
 	for (i = 0; i < 8; i++)
-		*(blk + i) = 'a' + i;
+		*(blk + i) = 26+i;
 
 	/* Write the block to the hard disk */
 	if (writeBlockToDisk(blk, 31415926, &buf) != 0)
@@ -71,6 +71,7 @@ int main(int argc, char **argv)
 	/* Read the block from the hard disk */
 	if ((blk = readBlockFromDisk(31415926, &buf)) == NULL)
 	{
+		printf("%c", *(blk));
 		perror("Reading Block Failed!\n");
 		return -1;
 	}
