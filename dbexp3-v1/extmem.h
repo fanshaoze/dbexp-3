@@ -14,7 +14,8 @@ using namespace std;
 #define BLOCK_AVAILABLE 0
 #define BLOCK_UNAVAILABLE 1
 
-typedef struct tagBuffer {
+typedef struct tagBuffer 
+{
 	unsigned long numIO; /* Number of IO's*/
 	size_t bufSize; /* Buffer size*/
 	size_t blkSize; /* Block size */

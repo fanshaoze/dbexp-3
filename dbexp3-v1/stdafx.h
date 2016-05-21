@@ -9,8 +9,12 @@
 
 #include <stdio.h>
 #include <tchar.h>
-#include "extmem.h"
-
-
 
 // TODO:  在此处引用程序需要的其他头文件
+#include "extmem.h"
+#include "gather.h"
+#include "init_show.h"
+#include "join.h"
+#include "projection.h"
+#include "select.h"
+#include "sort.h"

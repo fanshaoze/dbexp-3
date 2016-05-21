@@ -146,12 +146,24 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="extmem.h" />
+    <ClInclude Include="gather.h" />
+    <ClInclude Include="init_show.h" />
+    <ClInclude Include="join.h" />
+    <ClInclude Include="projection.h" />
+    <ClInclude Include="select.h" />
+    <ClInclude Include="sort.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dbexp3-v1.cpp" />
     <ClCompile Include="extmem.cpp" />
+    <ClCompile Include="gather.cpp" />
+    <ClCompile Include="init_show.cpp" />
+    <ClCompile Include="join.cpp" />
+    <ClCompile Include="projection.cpp" />
+    <ClCompile Include="select.cpp" />
+    <ClCompile Include="sort.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

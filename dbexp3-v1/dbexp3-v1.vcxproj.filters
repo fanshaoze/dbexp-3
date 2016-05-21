@@ -27,6 +27,24 @@
     <ClInclude Include="extmem.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="init_show.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="sort.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="select.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="projection.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="join.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="gather.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -36,6 +54,24 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="extmem.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="init_show.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="sort.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="select.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="projection.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="join.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="gather.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
