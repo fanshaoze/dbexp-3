@@ -48,7 +48,7 @@ int initdata()
 			return -1;
 		}
 		printf("现在写到了第%d号磁盘快\n", addr);
-
+		//当前结束，完成github的测试
 		freeBlockInBuffer((unsigned char *)blk, buf);
 	}
 }

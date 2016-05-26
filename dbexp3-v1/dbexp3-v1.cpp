@@ -81,7 +81,6 @@ int main(int argc, char **argv)
 		printf("%c", *(blk + i));
 
 	printf("\n");
-	printf("# of IO's is %d\n", buf.numIO); /* Check the number of IO's */
-
+	cout<<"# of IO's is "<<buf.numIO<<endl; /* Check the number of IO's */
 	return 0;
 }
