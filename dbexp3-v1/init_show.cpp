@@ -46,6 +46,7 @@ int initdata()
 		{
 			perror("Writing Block Failed!\n");
 			return -1;
+
 		}
 		printf("现在写到了第%d号磁盘快\n", addr);
 		
