@@ -50,9 +50,6 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="dbexp3-v1.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="extmem.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -72,6 +69,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="gather.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="dbexp4-v1.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
