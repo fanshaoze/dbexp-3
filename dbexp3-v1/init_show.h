@@ -7,4 +7,4 @@
 using namespace std;
 
 int initdata();
-void show();
+int showBlks(int addr);
