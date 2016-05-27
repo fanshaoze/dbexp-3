@@ -59,7 +59,7 @@ int showBlks(int addr)
 	int i = 0;
 	FILE *fout;
 
-	if ((fout = fopen("OUT.txt", "w")) == NULL)
+	if ((fout = fopen("OUT.txt", "wb")) == NULL)
 	{
 		printf("打不开文件out.txt\n");
 		return 0;
@@ -107,7 +107,7 @@ int showBlksOfNLJ(int addr)
 	int i = 0;
 	FILE *fout;
 
-	if ((fout = fopen("OUT.txt", "w")) == NULL)
+	if ((fout = fopen("OUT.txt", "wb")) == NULL)
 	{
 		printf("打不开文件out.txt\n");
 		return 0;
