@@ -16,7 +16,7 @@ int initdata()
 	srand((unsigned int)time(0));
 	if (initBuffer(520, 64, buf))
 	{
-		perror("Buffer Initialization Failed!\n");
+		cout<<"Buffer Initialization Failed!"<<endl;
 		return -1;
 	}
 	for (j = 0; j < 16; j++)//init r
@@ -32,23 +32,25 @@ int initdata()
 		}
 		*(blk + 15) = addr;
 		addr++;
-		printf("THIS--%d\n", addr);
+		cout << "THIS--" << addr << endl;
 		fprintf(fp, "第%d个块这是:\n", addr);
 
 		//遍历输出一下
 		for (i = 0; i < 8; i++)
 		{
-			printf("第%d个元组：%d\t%d\n", i + 1, *(blk + i * 2), *(blk + i * 2 + 1));
+			cout << "第" << i + 1 << "个元组：" << *(blk + i * 2) << "\t" << *(blk + i * 2 + 1) << endl;
+			//printf("第%d个元组：%d\t%d\n", i + 1, *(blk + i * 2), *(blk + i * 2 + 1));
 			fprintf(fp, "第%d个元组：%d\t%d\n", i + 1, *(blk + i * 2), *(blk + i * 2 + 1));
 		}
 		/* Write the block to the hard disk */
 		if (writeBlockToDisk((unsigned char *)blk, addr, buf) != 0)
 		{
-			perror("Writing Block Failed!\n");
+			cout << "Writing Block Failed!" << endl;
+			//perror("Writing Block Failed!\n");
 			return -1;
 		}
-		printf("现在写到了第%d号磁盘快\n", addr);
-
+		cout << "现在写到了第" << addr << "号磁盘快" << endl;
+		//printf("现在写到了第%d号磁盘快\n", addr);
 		freeBlockInBuffer((unsigned char *)blk, buf);
 	}
 }
@@ -61,19 +63,19 @@ int showBlks(int addr)
 
 	if ((fout = fopen("OUT.txt", "wb")) == NULL)
 	{
-		printf("打不开文件out.txt\n");
+		cout << "打不开文件out.txt" << endl;
 		return 0;
 	}
 
 	if (!initBuffer(520, 64, &buf))
 	{
-		perror("Buffer Initialization Failed!\n");
+		cout << "Buffer Initialization Failed!" << endl;
 		return -1;
 	}
 
 	if ((blkr = (unsigned int *)readBlockFromDisk(addr, &buf)) == NULL)
 	{
-		perror("Reading Block Failed!\n");
+		cout << "Reading Block Failed!" << endl;
 		return -1;
 	}
 
@@ -86,12 +88,12 @@ int showBlks(int addr)
 		}
 		addr = *(blkr + 15);
 		freeBlockInBuffer((unsigned char *)blkr, &buf);
-		printf("SHOW next: %d\n", addr);
+		cout << "SHOW next: " << addr << endl;
 		if (addr != 0)
 		{
 			if ((blkr = (unsigned int *)readBlockFromDisk(addr, &buf)) == NULL)
 			{
-				perror("Reading Block Failed!\n");
+				cout << "Reading Block Failed!" << endl;
 				break;
 			}
 		}
@@ -109,19 +111,19 @@ int showBlksOfNLJ(int addr)
 
 	if ((fout = fopen("OUT.txt", "wb")) == NULL)
 	{
-		printf("打不开文件out.txt\n");
+		cout << "打不开文件out.txt" << endl;
 		return 0;
 	}
 
 	if (!initBuffer(520, 64, &buf))
 	{
-		perror("Buffer Initialization Failed!\n");
+		cout << "Buffer Initialization Failed!" << endl;
 		return -1;
 	}
 
 	if ((blkr = (unsigned int *)readBlockFromDisk(addr, &buf)) == NULL)
 	{
-		perror("Reading Block Failed!\n");
+		cout << "Reading Block Failed!" << endl;
 		return -1;
 	}
 	while (addr != 0)//读下一个块
@@ -134,12 +136,12 @@ int showBlksOfNLJ(int addr)
 
 		addr = *(blkr + 15);
 		freeBlockInBuffer((unsigned char *)blkr, &buf);
-		printf("SHOWNLJ next: %d\n", addr);
+		cout << "SHOWNLJ next:" << addr << endl;
 		if (addr != 0)
 		{
 			if ((blkr = (unsigned int *)readBlockFromDisk(addr, &buf)) == NULL)
 			{
-				perror("Reading Block Failed!\n");
+				cout << "Reading Block Failed!" << endl;
 				break;
 			}
 		}
