@@ -9,7 +9,7 @@ int initdata()
 	int addr = 0;
 	Buffer *buf = new  Buffer;
 	unsigned int* blk;
-	
+
 	FILE *fp = NULL;
 	fp = fopen("init.txt", "wb");
 
@@ -19,7 +19,7 @@ int initdata()
 		perror("Buffer Initialization Failed!\n");
 		return -1;
 	}
-	for (j = 0; j<16; j++)//init r
+	for (j = 0; j < 16; j++)//init r
 	{
 		blk = (unsigned int *)getNewBlockInBuffer(buf);
 		/* Fill data into the block */
@@ -36,7 +36,7 @@ int initdata()
 		fprintf(fp, "第%d个块这是:\n", addr);
 
 		//遍历输出一下
-		for (i = 0; i<8; i++)
+		for (i = 0; i < 8; i++)
 		{
 			printf("第%d个元组：%d\t%d\n", i + 1, *(blk + i * 2), *(blk + i * 2 + 1));
 			fprintf(fp, "第%d个元组：%d\t%d\n", i + 1, *(blk + i * 2), *(blk + i * 2 + 1));
@@ -48,7 +48,7 @@ int initdata()
 			return -1;
 		}
 		printf("现在写到了第%d号磁盘快\n", addr);
-		
+
 		freeBlockInBuffer((unsigned char *)blk, buf);
 	}
 }
@@ -80,7 +80,7 @@ int showBlks(int addr)
 	while (addr != 0)//读下一个块
 	{
 		fprintf(fout, "现在是第%d块\n", addr);
-		for (i = 0; i<7; i++)//遍历块中的元组
+		for (i = 0; i < 7; i++)//遍历块中的元组
 		{//处理读取块中的单个元组
 			fprintf(fout, "A %d, B %d\n", *(blkr + 2 * i), *(blkr + 2 * i + 1));
 		}
@@ -127,7 +127,7 @@ int showBlksOfNLJ(int addr)
 	while (addr != 0)//读下一个块
 	{
 		fprintf(fout, "现在是第%d块\n", addr);
-		for (i = 0; i<3; i++)//遍历块中的元组
+		for (i = 0; i < 3; i++)//遍历块中的元组
 		{//处理读取块中的单个元组
 			fprintf(fout, "A %d, B %d, C %d, D %d\n", *(blkr + 4 * i), *(blkr + 4 * i + 1), *(blkr + 4 * i + 2), *(blkr + 4 * i + 3));
 		}

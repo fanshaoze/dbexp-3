@@ -12,15 +12,15 @@ void bubbleSort(int n, unsigned int* p)//ц╟ещеепР
 {
 	int i, j;
 	int x, y;
-	for (i = 0; i<n - 1; i++)
+	for (i = 0; i < n - 1; i++)
 	{
-		for (j = 0; j<n - i - 1; j++)
+		for (j = 0; j < n - i - 1; j++)
 		{
 			//k=8*j;
 			x = p[j * 2];
 			y = p[(j + 1) * 2];
 			printf("%dлк  x: %d, y: %d\n", i, x, y);
-			if (x>y)
+			if (x > y)
 			{
 				swap(&p[j * 2], &p[(j + 1) * 2]);
 			}
