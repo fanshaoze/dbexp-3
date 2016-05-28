@@ -18,3 +18,5 @@
 #include "projection.h"
 #include "select.h"
 #include "sort.h"
+
+extern int Raddr, Saddr;

@@ -1,7 +1,6 @@
 #include "init_show.h"
 #include "stdafx.h"
 #include <time.h>
-int Raddr, Saddr;
 int initdata()
 {
 	int i = 0;

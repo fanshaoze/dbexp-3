@@ -71,13 +71,17 @@ int linearselect(int addr, int val)
 			}
 		}
 	}
-
+	//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
 	//最后判断一下是否有往磁盘上写过块，若没有，则写一次。因为如果未写过，说明选择到的记录不到7条（不满一个blk）
-	if (waddr == 1200)
+	if (j != 0)
 	{
 		writeBlockToDisk((unsigned char *)blkw, waddr, &buf);
 	}
 	fclose(fo);
 	freeBuffer(&buf);
 	return waddr;
+}
+int binaryselect(int addr, int val)
+{
+	return 0;
 }

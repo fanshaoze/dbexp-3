@@ -8,3 +8,4 @@
 using namespace std;
 
 int linearselect(int addr, int val);
+int binaryselect(int addr, int val);
