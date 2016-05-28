@@ -1,14 +1,14 @@
 #include "init_show.h"
 #include "stdafx.h"
 #include <time.h>
-
+int Raddr, Saddr;
 int initdata()
 {
 	int i = 0;
 	int j = 0;
-	int addr = 0;
+	int addr = 0;//表示当前是第几个块
 	Buffer *buf = new  Buffer;
-	unsigned int* blk;
+	unsigned int* blk;//表示当前的数据块
 
 	FILE *fp = NULL;
 	fp = fopen("init.txt", "wb");
@@ -16,7 +16,7 @@ int initdata()
 	srand((unsigned int)time(0));
 	if (initBuffer(520, 64, buf))
 	{
-		cout<<"Buffer Initialization Failed!"<<endl;
+		cout << "Buffer Initialization Failed!" << endl;
 		return -1;
 	}
 	for (j = 0; j < 16; j++)//init r
@@ -53,6 +53,46 @@ int initdata()
 		//printf("现在写到了第%d号磁盘快\n", addr);
 		freeBlockInBuffer((unsigned char *)blk, buf);
 	}
+	Raddr = addr;
+	addr = 100;
+	for (j = 0; j < 32; j++)//init s
+	{
+		//printf("第%d次循环了！！！！！！！\n",j);
+		blk = (unsigned int *)getNewBlockInBuffer(buf);
+		// Fill data into the block
+		for (i = 0; i < 7; i++)
+		{
+			*(blk + 2 * i) = rand() % 40 + 21;//C
+			printf("%d\t", *(blk + 2 * i));
+			*(blk + 2 * i + 1) = rand() % 1000 + 1;//D
+			printf("%d\n", *(blk + 2 * i + 1));
+		}
+		//判断是不是第一个要写的块，如果是，则blk+60设置为0
+		if (addr != 100)
+		{
+			*(blk + 15) = addr;
+		}
+		else
+		{
+			*(blk + 15) = 0;
+		}
+		//addr = 100;
+		addr++;
+
+		/* Write the block to the hard disk */
+		if (writeBlockToDisk((unsigned char *)blk, addr, buf) != 0)
+		{
+			perror("Writing Block Failed!\n");
+			return -1;
+		}
+
+		freeBlockInBuffer((unsigned char *)blk, buf);
+	}
+	Saddr = addr;
+	freeBuffer(buf);
+
+	fclose(fp);
+
 }
 int showBlks(int addr)
 {

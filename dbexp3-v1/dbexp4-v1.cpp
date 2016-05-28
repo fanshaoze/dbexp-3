@@ -34,10 +34,10 @@ void freeBlockInBuffer(unsigned char *blk, Buffer *buf);
 // Drop a block on the disk //
 int dropBlockOnDisk(unsigned int addr);
 
-// Read a block from the hard disk to the buffer by the address of the block. 
+// Read a block from the hard disk to the buffer by the address of the block.
 unsigned char *readBlockFromDisk(unsigned int addr, Buffer *buf);
 
-// Read a block in the buffer to the hard disk by the address of the block. 
+// Read a block in the buffer to the hard disk by the address of the block.
 int writeBlockToDisk(unsigned char *blkPtr, unsigned int addr, Buffer *buf);
 */
 
@@ -59,7 +59,7 @@ int main(int argc, char **argv)
 
 	/* Fill data into the block */
 	for (i = 0; i < 8; i++)
-		*(blk + i) = 26+i;
+		*(blk + i) = 26 + i;
 
 	/* Write the block to the hard disk */
 	if (writeBlockToDisk(blk, 31415926, &buf) != 0)
@@ -71,16 +71,16 @@ int main(int argc, char **argv)
 	/* Read the block from the hard disk */
 	if ((blk = readBlockFromDisk(31415926, &buf)) == NULL)
 	{
-		printf("%c", *(blk));
+		cout << *(blk);
 		perror("Reading Block Failed!\n");
 		return -1;
 	}
 
 	/* Process the data in the block */
 	for (i = 0; i < 8; i++)
-		printf("%c", *(blk + i));
+		cout << *(blk + i) << endl;
 
-	printf("\n");
-	cout<<"# of IO's is "<<buf.numIO<<endl; /* Check the number of IO's */
+	cout << endl;
+	cout << "# of IO's is " << buf.numIO << endl; /* Check the number of IO's */
 	return 0;
 }
