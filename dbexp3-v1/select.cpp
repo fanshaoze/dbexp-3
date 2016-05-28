@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "select.h"
-int select(int addr, int val)
+int linearselect(int addr, int val)
 {
 	Buffer buf;
 	unsigned int *blkr = NULL, *blkw = NULL;
@@ -42,6 +42,7 @@ int select(int addr, int val)
 			fprintf(fo, "A %d, B %d\n", *(blkr + 2 * i), *(blkr + 2 * i + 1));
 			if (*(blkr + 2 * i) == val)
 			{
+				//把当前的查询到的复制到申请的缓存块中
 				*(blkw + j) = *(blkr + 2 * i);
 				*(blkw + j + 1) = *(blkr + 2 * i + 1);
 				j = (j + 2) % 16;
@@ -52,11 +53,10 @@ int select(int addr, int val)
 					*(blkw + 15) = waddr;
 					waddr += 100;
 					writeBlockToDisk((unsigned char *)blkw, waddr, &buf);
-					//freeBlockInBuffer(blkw,&buf);
-					//blkw = getNewBlockInBuffer(&buf);//要一块缓冲区块，用来暂存要写回磁盘的块
+					//freeBlockInBuffer((unsigned char *)blkw,&buf);
+					//blkw = (unsigned int *)getNewBlockInBuffer(&buf);//要一块缓冲区块，用来暂存要写回磁盘的块
 				}
 			}
-
 		}
 
 		addr = *(blkr + 15);

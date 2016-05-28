@@ -16,7 +16,7 @@ int initdata()
 	srand((unsigned int)time(0));
 	if (initBuffer(520, 64, buf))
 	{
-		cout << "Buffer Initialization Failed!" << endl;
+		perror("Buffer Initialization Failed!\n");
 		return -1;
 	}
 	for (j = 0; j < 16; j++)//init r
@@ -45,8 +45,7 @@ int initdata()
 		/* Write the block to the hard disk */
 		if (writeBlockToDisk((unsigned char *)blk, addr, buf) != 0)
 		{
-			cout << "Writing Block Failed!" << endl;
-			//perror("Writing Block Failed!\n");
+			perror("Writing Block Failed!\n");
 			return -1;
 		}
 		cout << "现在写到了第" << addr << "号磁盘快" << endl;
@@ -109,13 +108,13 @@ int showBlks(int addr)
 
 	if (!initBuffer(520, 64, &buf))
 	{
-		cout << "Buffer Initialization Failed!" << endl;
+		perror("Buffer Initialization Failed!\n");
 		return -1;
 	}
 
 	if ((blkr = (unsigned int *)readBlockFromDisk(addr, &buf)) == NULL)
 	{
-		cout << "Reading Block Failed!" << endl;
+		perror("Reading Block Failed!\n");
 		return -1;
 	}
 
@@ -133,7 +132,7 @@ int showBlks(int addr)
 		{
 			if ((blkr = (unsigned int *)readBlockFromDisk(addr, &buf)) == NULL)
 			{
-				cout << "Reading Block Failed!" << endl;
+				perror("Reading Block Failed!\n");
 				break;
 			}
 		}
@@ -157,13 +156,13 @@ int showBlksOfNLJ(int addr)
 
 	if (!initBuffer(520, 64, &buf))
 	{
-		cout << "Buffer Initialization Failed!" << endl;
+		perror("Buffer Initialization Failed!\n");
 		return -1;
 	}
 
 	if ((blkr = (unsigned int *)readBlockFromDisk(addr, &buf)) == NULL)
 	{
-		cout << "Reading Block Failed!" << endl;
+		perror("Reading Block Failed!\n");
 		return -1;
 	}
 	while (addr != 0)//读下一个块
@@ -181,7 +180,7 @@ int showBlksOfNLJ(int addr)
 		{
 			if ((blkr = (unsigned int *)readBlockFromDisk(addr, &buf)) == NULL)
 			{
-				cout << "Reading Block Failed!" << endl;
+				perror("Reading Block Failed!\n");
 				break;
 			}
 		}

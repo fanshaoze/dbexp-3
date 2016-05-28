@@ -7,4 +7,4 @@
 #include "extmem.h"
 using namespace std;
 
-int select(int addr, int val);
+int linearselect(int addr, int val);
