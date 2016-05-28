@@ -124,3 +124,14 @@ int NLJ()//采用块嵌套循环连接
 	freeBuffer(&buf);
 	return 18000;
 }
+void deleteTempBlks()
+{
+	int i = 0;
+	for (i = 1; i <= 16; i++)
+	{
+		dropBlockOnDisk(2000 + i);
+		dropBlockOnDisk(4000 + i);
+		dropBlockOnDisk(6000 + i);
+		dropBlockOnDisk(8000 + i);
+	}
+}

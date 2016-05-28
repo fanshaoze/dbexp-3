@@ -8,3 +8,4 @@
 using namespace std;
 
 int NLJ();//采用块嵌套循环连接
+void deleteTempBlks();
