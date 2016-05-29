@@ -96,9 +96,9 @@ int mergeSort(unsigned int addr1, int n1, unsigned int addr2, int n2, int base)
 
 	blkw = (unsigned int *)getNewBlockInBuffer(&buf);//要一块缓冲区块，用来暂存要写回磁盘的块
 
-	while (n1>0 || n2>0)
+	while (n1 > 0 || n2 > 0)
 	{
-		if (x<y)
+		if (x < y)
 		{
 			*(blkw + w * 2) = *(blkr1 + i1 * 2);
 			*(blkw + w * 2 + 1) = *(blkr1 + i1 * 2 + 1);
@@ -115,30 +115,20 @@ int mergeSort(unsigned int addr1, int n1, unsigned int addr2, int n2, int base)
 		{
 			w = 0;
 			*(blkw + 15) = waddr - 1;
-			if (waddr == 8001)
-			{
-				*(blkw + 15) = 0;
-			}
+			if (waddr == 8001) *(blkw + 15) = 0;
 			writeBlockToDisk((unsigned char *)blkw, waddr, &buf);
-
 			printf("归并，写回到了第%d块\n", waddr);
 			waddr--;
 		}
-		if (n1>0)
-		{
-			x = *(blkr1 + i1 * 2);
-		}
-		if (n2>0)
-		{
-			y = *(blkr2 + i2 * 2);
-		}
+		if (n1 > 0) x = *(blkr1 + i1 * 2);
+		if (n2 > 0) y = *(blkr2 + i2 * 2);
 		if (i1 == 7)
 		{
 			i1 = 0;
 			addr1--;
 			n1--;
 			freeBlockInBuffer((unsigned char *)blkr1, &buf);
-			if (addr1 != 0 && n1>0)
+			if (addr1 != 0 && n1 > 0)
 			{
 				if ((blkr1 = (unsigned int *)readBlockFromDisk(addr1, &buf)) == NULL)
 				{
@@ -147,10 +137,7 @@ int mergeSort(unsigned int addr1, int n1, unsigned int addr2, int n2, int base)
 				}
 				x = *blkr1;
 			}
-			else
-			{
-				x = 2000;
-			}
+			else x = 2000;
 		}
 		if (i2 == 7)
 		{
@@ -158,7 +145,7 @@ int mergeSort(unsigned int addr1, int n1, unsigned int addr2, int n2, int base)
 			addr2--;
 			n2--;
 			freeBlockInBuffer((unsigned char *)blkr2, &buf);
-			if (addr2 != 0 && n2>0)
+			if (addr2 != 0 && n2 > 0)
 			{
 				if ((blkr2 = (unsigned int *)readBlockFromDisk(addr2, &buf)) == NULL)
 				{
@@ -167,10 +154,7 @@ int mergeSort(unsigned int addr1, int n1, unsigned int addr2, int n2, int base)
 				}
 				y = *blkr2;
 			}
-			else
-			{
-				y = 2000;
-			}
+			else y = 2000;
 		}
 	}
 	freeBuffer(&buf);
@@ -180,7 +164,7 @@ int mergeAll()
 	int i = 0;
 	unsigned int addr1 = 2000 + Raddr, addr2 = 0, base = Raddr;
 	//base+=2000;
-	for (i = 0; i<8; i++)
+	for (i = 0; i < 8; i++)
 	{
 		addr1 = base - 2 * i;
 		//addr1=Raddr-2*i;
@@ -188,7 +172,7 @@ int mergeAll()
 		mergeSort(addr1, 1, addr2, 1, 2000);
 	}
 	base += 2000;
-	for (i = 0; i<4; i++)
+	for (i = 0; i < 4; i++)
 	{
 		addr1 = base - 4 * i;
 		//addr1=Raddr-4*i;
@@ -196,7 +180,7 @@ int mergeAll()
 		mergeSort(addr1, 2, addr2, 2, 2000);
 	}
 	base += 2000;
-	for (i = 0; i<2; i++)
+	for (i = 0; i < 2; i++)
 	{
 		addr1 = base - 8 * i;
 		//addr1=Raddr-8*i;
