@@ -105,6 +105,6 @@ int project()
 	writeBlockToDisk((unsigned char *)blkr, waddr - 1, &buf);
 
 	freeBuffer(&buf);
-	deleteTempBlks();
+	//deleteTempBlks();
 	return 12000;
 }
