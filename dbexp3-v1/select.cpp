@@ -91,8 +91,7 @@ int binaryselect(int addr, int val)
 	//先把磁盘上之前的select结果块们删掉
 	for (i = 0; i < 48; i++)
 	{
-		if (dropBlockOnDisk(waddr + i * 100) == -1)
-			break;
+		if (dropBlockOnDisk(waddr + i * 100) == -1) break;
 	}
 	if (!initBuffer(520, 64, &buf))
 	{
