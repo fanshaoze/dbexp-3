@@ -83,5 +83,59 @@ int linearselect(int addr, int val)
 }
 int binaryselect(int addr, int val)
 {
-	return 0;
+	int barray[16];
+	Buffer buf;
+	unsigned int *blkr = NULL, *blkw = NULL;
+	int j = 0, i = 0;
+	int waddr = 1300;
+	//先把磁盘上之前的select结果块们删掉
+	for (i = 0; i < 48; i++)
+	{
+		if (dropBlockOnDisk(waddr + i * 100) == -1)
+			break;
+	}
+	if (!initBuffer(520, 64, &buf))
+	{
+		perror("Buffer Initialization Failed!\n");
+		return -1;
+	}
+	//----------------------------------------------
+	blkw = (unsigned int *)getNewBlockInBuffer(&buf);//要一块缓冲区块，用来暂存要写回磁盘的块
+	for (i = 0; i < 16; i++) barray[i] = 0;
+	i = 0;
+	while (addr != 0)//读下一个块
+	{
+		if ((blkr = (unsigned int *)readBlockFromDisk(addr, &buf)) == NULL)
+		{
+			perror("Reading Block Failed!\n");
+			return -1;
+		}
+		barray[i * 2] = *(blkr);
+		barray[i * 2 + 1] = *(blkr + 12);
+		addr = *(blkr + 15);
+		i++;
+	}
+	addr = 8000+(binarysort(barray,val)/2);
+	if ((blkr = (unsigned int *)readBlockFromDisk(addr, &buf)) == NULL)
+	{
+		perror("Reading Block Failed!\n");
+		return -1;
+	} 
+	int flag = 0;
+	for (i = 0; i < 8; i++)
+	{
+		if (*(blkr + i * 2) == val)
+		{
+			flag = 1; 
+			break;
+		}
+	}
+	if (flag = 1)
+	{
+		*blkw = *(blkr + i * 2);
+		*(blkw + 1) = *(blkr + i * 2 + 1);
+		writeBlockToDisk((unsigned char *)blkw, waddr, &buf);
+		return waddr;
+	}
+	else return 0;
 }

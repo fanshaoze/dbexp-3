@@ -194,3 +194,19 @@ int mergeAll()
 
 	return base + 2000;
 }
+int binarysort(int array[], int val)
+{
+	int i = 0;
+	int j = sizeof(array)-1;
+	while (j - i > 1)
+	{
+		if (array[i] > val && val > array[j])
+		{
+			if (val - array[i] < array[j] - val) j = (i + j) / 2 + 1;
+			else i = (i + j) / 2 - 1;
+		}
+		else if (array[i] = val) return i;
+		else if (array[j] = val) return j;
+	}
+	return i;
+}
